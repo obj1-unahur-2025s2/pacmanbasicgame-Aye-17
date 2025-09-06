@@ -4,14 +4,21 @@ import example.*
 program pacmanGame {
 	
 	// límites del juego
-	game.width(14)
-	game.height(8)
+	game.width(20) //ancho
+	game.height(10) //alto
+	game.cellSize(100)
 	
 	// fondo
 	game.boardGround("pacmanBackground.jpg")
 	
 	// personaje principal
-	game.addVisualCharacter(pacman)
+	game.addVisualCharacter(pacman) //El pj se mueve
+	//game.addVisual(pacman) El pj no se mueve
+	keyboard.w().onPressDo({pacman.position(pacman.position().up(1))}) //Logra que el pj se mueva arriba con la tecla w
+	keyboard.s().onPressDo({pacman.position(pacman.position().down(1))}) //Logra que el pj se mueva abajo con la tecla s
+	keyboard.a().onPressDo({pacman.position(pacman.position().left(1))}) //Logra que el pj se izquierda abajo con la tecla a
+	keyboard.d().onPressDo({pacman.position(pacman.position().right(1))}) //Logra que el pj se mueva derecha con la tecla d
+	//keyboard.space().onPressDo({pacman.cambiarSkin("gumball.png")})
 	
 	// que arranque el juego!
 	game.start()
