@@ -8,14 +8,52 @@ program pacmanGame {
 	// límites del juego
 	game.width(14)
 	game.height(8)
+
+	const rivales = [fantasmaRojo, fantasmaAzul]
 	
 	// fondo
 	game.boardGround("pacmanBackground.jpg")
 	
 	// personaje principal
 	game.addVisualCharacter(pacman)
+
+	/*Hecho en clase*/
+
+	keyboard.w().onPressDo({pacman.moverseHaciaArriba()})
+	keyboard.s().onPressDo({pacman.moverseHaciaAbajo()})
+	keyboard.a().onPressDo({pacman.moverseHaciaIzquierda()})
+	keyboard.d().onPressDo({pacman.moverseHaciaDerecha()})
+
+
+
+	game.addVisual(fantasmaRojo)
+	game.addVisual(fantasmaAzul)
+
+	/*
+	game.whenCollideDo(fantasmaRojo, {
+		personaje => 
+		personaje.position(game.origin())
+		personaje.perderVida()
+		game.say(personaje,"Me quedan " + personaje.vidas() + " vidas. ")
+		})
+	*/
+
+	rivales.forEach({
+		rival => game.whenCollideDo(rival, {
+			personaje =>
+			personaje.perderVida()
+			game.say(personaje,"Me quedan " + personaje.vidas() + " vidas. ")
+		})
 	
 
+	})
+
+
+	//game.say(personaje,"Me quedan" + personaje.vidas() + "vidas.")
+	/*Hecho en clase*/
+	
+
+	/*
 	// rivales
 	const rivales = [new Rival(numero = 1), new Rival(numero = 2)]
 	
@@ -30,8 +68,11 @@ program pacmanGame {
 			}
 		})
 	}
+	*/
+	
 	
 	// que arranque el juego!
 	game.start()
+	
 	
 }
